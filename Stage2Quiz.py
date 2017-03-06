@@ -2,7 +2,7 @@
 
 #Easy questions. Easy answers. Easy sentences that contain the easy answers. 
 easy_questions = ["What planet has the nickname, the Red Planet ____?\n", 
-"What is the biggest planet in our solar system ____\n",
+"What is the biggest planet in our solar system ____?\n",
 "What is the name of the galaxy Earth resides in ____?\n",
 "What is the smallest planet in our solar system ____?\n",]
 easy_answers = ["mars", "jupiter", "milky way", "mercury"]
@@ -61,9 +61,12 @@ def getquestionanswer(userlevel):
 	elif userlevel == "hard":
 		return [hard_questions, hard_answers, hard_sentence]
 
-
+#Variables use to play th egame
 userquestions = getquestionanswer(userlevel)
-
+questions = userquestions[0]
+answers =  userquestions[1]
+sentence = userquestions[2]
+question_counter = 0
 
 #Retrieves the question and checks user input with answer key list
 def answerquestion(questions, answers, sentence, question_counter):
@@ -71,16 +74,16 @@ def answerquestion(questions, answers, sentence, question_counter):
 	if user_answer.lower() == answers[question_counter].lower():
 		print sentence[question_counter]
 		question_counter = question_counter+1
-		if question_counter <= 3:
+		if question_counter < len(questions):
 			answerquestion(questions, answers, sentence, question_counter)
 		else: 
 			print "Congrats!"
-			for e in sentence:
-				print e
+			for correct_answers in sentence:
+				print correct_answers
 	else:
 		print "Incorrect"
 		answerquestion(questions, answers, sentence, question_counter)
 
 #Plays the game 
-answerquestion(userquestions[0], userquestions[1], userquestions[2], 0)
+answerquestion(questions, answers, sentence, question_counter)
 
